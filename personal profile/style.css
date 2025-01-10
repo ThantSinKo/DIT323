@@ -1,3 +1,5 @@
+
+/* My Profile Image */
 img{
     
     height: 20%;
@@ -8,7 +10,7 @@ img{
     width: 20%;
 }
 
-
+/* Bio */
 .bio{
     display: block;
     margin-left: auto;
@@ -16,6 +18,8 @@ img{
     width: 50%;
     position: relative;
 }
+
+/* Footer */
 
 footer{
     display: table;
