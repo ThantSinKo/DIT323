@@ -11,7 +11,7 @@ img{
 }
 
 /* Bio */
-.bio{
+.bio .hobbies .skills{
     display: block;
     margin-left: auto;
     margin-right: auto;
