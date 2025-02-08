@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Demo</title>
+
+  <style>
+    #box {
+      width: 100px;
+      height: 100px;
+      background: red;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- html dom element -->
+  <button id="toggle">Toggle Box</button>
+  <div id="box"></div>
+
+  <!-- JavaScript -->
+  <script>
+    // Demo: Interactive Button
+    document.getElementById("toggle").addEventListener("click", () => {
+      
+      let box = document.getElementById("box");
+      box.style.display = (box.style.display === "none" ? "block" : "none");
+    });
+
+  </script>
+</body>
+
+</html>
