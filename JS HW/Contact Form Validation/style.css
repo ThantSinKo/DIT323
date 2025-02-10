@@ -1,0 +1,35 @@
+body { 
+    font-family: Arial, sans-serif; 
+}
+        
+.error { 
+    color: red; 
+    display: none; 
+}
+        
+.success { 
+    color: green; 
+    display: none; 
+}
+
+h2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#contactForm {
+    width: 200px;
+
+    position: absolute;
+    left: 42%;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    flex-direction: column;
+    border-style: solid;
+    border-color: black;
+    padding: 20px;
+}
