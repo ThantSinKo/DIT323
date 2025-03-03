@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Error Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .error {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Custom Error Example</h1>
+    <button onclick="testValidationError()">Test Validation Error</button>
+    <button onclick="testDatabaseError()">Test Database Error</button>
+    <button onclick="testNetworkError()">Test Network Error</button>
+
+    <div id="output"></div>
+
+    <script>
+        // Include the JavaScript code here
+        class CustomError extends Error {
+            constructor(message) {
+                super(message);
+                this.name = this.constructor.name;
+                if (Error.captureStackTrace) {
+                    Error.captureStackTrace(this, this.constructor);
+                }
+            }
+        }
+
+        class ValidationError extends CustomError {
+            constructor(message, field) {
+                super(message);
+                this.field = field;
+            }
+        }
+
+        class DatabaseError extends CustomError {
+            constructor(message, query) {
+                super(message);
+                this.query = query;
+            }
+        }
+
+        class NetworkError extends CustomError {
+            constructor(message, statusCode) {
+                super(message);
+                this.statusCode = statusCode;
+            }
+        }
+
+        function testValidationError() {
+            try {
+                throw new ValidationError("Name is required", "name");
+            } catch (error) {
+                displayError(error);
+            }
+        }
+
+        function testDatabaseError() {
+            try {
+                throw new DatabaseError("Failed to fetch data", "SELECT * FROM users");
+            } catch (error) {
+                displayError(error);
+            }
+        }
+
+        function testNetworkError() {
+            try {
+                throw new NetworkError("Network request failed", 500);
+            } catch (error) {
+                displayError(error);
+            }
+        }
+
+        function displayError(error) {
+            const output = document.getElementById("output");
+            output.innerHTML = `<div class="error">${error.name}: ${error.message}</div>`;
+            if (error instanceof ValidationError) {
+                output.innerHTML += `<div>Field: ${error.field}</div>`;
+            } else if (error instanceof DatabaseError) {
+                output.innerHTML += `<div>Query: ${error.query}</div>`;
+            } else if (error instanceof NetworkError) {
+                output.innerHTML += `<div>Status Code: ${error.statusCode}</div>`;
+            }
+        }
+    </script>
+</body>
+</html>
